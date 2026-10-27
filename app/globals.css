@@ -1,0 +1,1064 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+ * 1. @font-face rules, copied verbatim from css/flaticon.css and
+ *    fonts/flaticon/font/flaticon.css in the uploaded template. Paths are
+ *    rewritten to the mirrored copy of those files under /public/template so
+ *    the original template still resolves its own relative urls unchanged.
+ * ------------------------------------------------------------------------ */
+@font-face {
+  font-family: 'Flaticon';
+  src: url('/template/wilcon-main/fonts/flaticon/font/Flaticon.eot');
+  src:
+    url('/template/wilcon-main/fonts/flaticon/font/Flaticon.eot?#iefix') format('embedded-opentype'),
+    url('/template/wilcon-main/fonts/flaticon/font/Flaticon.woff2') format('woff2'),
+    url('/template/wilcon-main/fonts/flaticon/font/Flaticon.woff') format('woff'),
+    url('/template/wilcon-main/fonts/flaticon/font/Flaticon.ttf') format('truetype'),
+    url('/template/wilcon-main/fonts/flaticon/font/Flaticon.svg#Flaticon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'Flaticon';
+    src: url('/template/wilcon-main/fonts/flaticon/font/Flaticon.svg#Flaticon') format('svg');
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 2. CSS custom properties. Bootstrap's :root block from css/style.css is
+ *    reproduced here unchanged, then the template's SCSS palette
+ *    ($primary, $secondary, $darken, $white, $black) is added as the brand
+ *    tokens the app consumes. No colour outside this list is introduced.
+ * ------------------------------------------------------------------------ */
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* Template SCSS palette (scss/style.scss) */
+  --nb-primary: #fc5e28;
+  --nb-secondary: #040e26;
+  --nb-darken: #232931;
+  --nb-white: #fff;
+  --nb-black: #000000;
+  --nb-footer: #030918;
+  --nb-light: #f8f9fa;
+  --nb-border: #dee2e6;
+  --nb-body: #999999;
+  --nb-heading: rgba(0, 0, 0, 0.9);
+  --nb-loader-ring: #f96d00;
+  --nb-loader-track: #eeeeee;
+  --nb-shadow-btn: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+  --nb-shadow-card: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  --nb-shadow-loader: 0px 24px 64px rgba(0, 0, 0, 0.24);
+  --nb-font-body: 17px;
+  --nb-line-body: 1.8;
+}
+
+/* ---------------------------------------------------------------------------
+ * 3. Tailwind v4 theme. Fonts and colours come from the template only.
+ *    Breakpoints mirror the template's media queries (576/768/992/1200) so
+ *    every existing template layout switch lands at the same width.
+ * ------------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Roboto', Arial, sans-serif;
+  --font-mono: var(--font-family-monospace);
+
+  --color-primary: var(--nb-primary);
+  --color-primary-soft: rgba(252, 94, 40, 0.12);
+  --color-secondary: var(--nb-secondary);
+  --color-darken: var(--nb-darken);
+  --color-ink: var(--nb-heading);
+  --color-body: var(--nb-body);
+  --color-line: var(--nb-border);
+  --color-surface: #ffffff;
+  --color-surface-soft: var(--nb-light);
+  --color-footer: var(--nb-footer);
+  --color-success: var(--green);
+  --color-warning: var(--yellow);
+  --color-danger: var(--red);
+  --color-info: var(--cyan);
+
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1536px;
+
+  --shadow-btn: var(--nb-shadow-btn);
+  --shadow-card: var(--nb-shadow-card);
+  --radius-card: 4px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: #ffffff;
+    font-size: var(--nb-font-body);
+    line-height: var(--nb-line-body);
+    font-weight: 400;
+    color: var(--nb-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.5;
+    color: var(--nb-heading);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--nb-primary);
+    color: #ffffff;
+  }
+
+  /* Template never removes outlines without a replacement; we do the reverse. */
+  :focus-visible {
+    outline: 2px solid var(--nb-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 4. Template component vocabulary (scss/style.scss), retargeted to utilities.
+ * ------------------------------------------------------------------------ */
+@layer components {
+  .flaticon::before,
+  .flaticon::after {
+    font-family: Flaticon;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .flaticon-hammer::before {
+    content: '\f100';
+  }
+  .flaticon-worker::before {
+    content: '\f101';
+  }
+  .flaticon-engineer-1::before {
+    content: '\f102';
+  }
+  .flaticon-engineer::before {
+    content: '\f103';
+  }
+  .flaticon-worker-1::before {
+    content: '\f104';
+  }
+  .flaticon-architect::before {
+    content: '\f105';
+  }
+  .flaticon-crane::before {
+    content: '\f106';
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    box-shadow: var(--nb-shadow-btn);
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .btn-primary {
+    background: var(--nb-primary);
+    border-color: var(--nb-primary);
+    color: #ffffff;
+  }
+  .btn-primary:hover {
+    background: #e64e1d;
+    border-color: #e64e1d;
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    background: var(--nb-secondary);
+    border-color: var(--nb-secondary);
+    color: #ffffff;
+  }
+  .btn-secondary:hover {
+    background: transparent;
+    color: var(--nb-secondary);
+  }
+
+  .btn-white {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+  }
+  .btn-white:hover {
+    background: #ffffff;
+    border-color: #000000;
+    color: var(--nb-primary);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--nb-primary);
+    color: var(--nb-primary);
+    box-shadow: none;
+  }
+  .btn-outline:hover {
+    background: var(--nb-primary);
+    border-color: var(--nb-primary);
+    color: #ffffff;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--nb-border);
+    color: var(--nb-secondary);
+    box-shadow: none;
+  }
+  .btn-ghost:hover {
+    border-color: var(--nb-primary);
+    color: var(--nb-primary);
+  }
+
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.7);
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    box-shadow: none;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .field::placeholder {
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .field:focus,
+  .field:active {
+    outline: none;
+    border-color: var(--nb-primary);
+    box-shadow: 0 0 0 3px rgba(252, 94, 40, 0.18);
+  }
+
+  .field[aria-invalid='true'] {
+    border-color: var(--red);
+  }
+
+  textarea.field {
+    min-height: 132px;
+    resize: vertical;
+  }
+
+  select.field {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.5) 50%),
+      linear-gradient(135deg, rgba(0, 0, 0, 0.5) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% + 2px),
+      calc(100% - 13px) calc(50% + 2px);
+    background-size:
+      5px 5px,
+      5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--nb-secondary);
+  }
+
+  .help {
+    margin-top: 0.375rem;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  .error {
+    margin-top: 0.375rem;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--red);
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    box-shadow: var(--nb-shadow-card);
+  }
+
+  .subheading {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--nb-primary);
+    margin-bottom: 14px;
+  }
+
+  .heading-section h2 {
+    line-height: 1.2;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--nb-heading);
+  }
+
+  @media (min-width: 768px) {
+    .heading-section h2 {
+      font-size: 40px;
+    }
+  }
+
+  .heading-section p {
+    color: var(--nb-body);
+  }
+
+  .section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-top: 7em;
+      padding-bottom: 7em;
+    }
+  }
+
+  .hero-wrap {
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+  }
+
+  @media (min-width: 768px) {
+    .hero-wrap {
+      min-height: 620px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-wrap {
+      min-height: 700px;
+    }
+  }
+
+  .hero-wrap > .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--nb-secondary);
+    opacity: 0.5;
+  }
+
+  .hero-wrap h1 {
+    color: #ffffff;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 36px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-wrap h1 {
+      font-size: 48px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-wrap h1 {
+      font-size: 60px;
+    }
+  }
+
+  .bread {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  @media (min-width: 768px) {
+    .bread {
+      font-size: 50px;
+    }
+  }
+
+  /* Interior page banner. The template's .hero-wrap.hero-wrap-2 is a fixed 600px
+     block with a black scrim; the same numbers are kept, only the height becomes a
+     minimum so the copy can never be cut off on a small phone. */
+  .hero-wrap-2 {
+    min-height: 340px;
+    background-position: top center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-wrap-2 {
+      min-height: 480px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero-wrap-2 {
+      min-height: 600px;
+    }
+  }
+
+  .hero-wrap-2 > .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #000000;
+    opacity: 0.5;
+  }
+
+  .breadcrumbs {
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .intro-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 2.5rem;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .intro-band > .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--nb-secondary);
+    opacity: 0.8;
+  }
+
+  .intro-band h2 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .intro-band h2 {
+      font-size: 24px;
+    }
+  }
+
+  .nav-link-nb {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.2s ease;
+  }
+
+  .nav-link-nb:hover,
+  .nav-link-nb[data-active='true'] {
+    color: var(--nb-primary);
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--nb-primary);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .social-link:hover {
+    background: var(--nb-primary);
+    color: #ffffff;
+  }
+
+  .badge-verify {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: rgba(40, 167, 69, 0.12);
+    color: #1c7c34;
+  }
+
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+
+  .badge-pending {
+    background: var(--nb-light);
+    color: var(--gray-dark);
+  }
+  .badge-progress {
+    background: rgba(255, 193, 7, 0.16);
+    color: #8a6a00;
+  }
+  .badge-completed {
+    background: rgba(23, 162, 184, 0.14);
+    color: #0f6b7c;
+  }
+  .badge-approved {
+    background: rgba(40, 167, 69, 0.14);
+    color: #1c7c34;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .progress-track {
+      height: 8px;
+    }
+  }
+
+  .progress-bar-nb {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--nb-primary);
+    transition: width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .table-nb {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  .table-nb th,
+  .table-nb td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    vertical-align: top;
+  }
+
+  .table-nb th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--nb-secondary);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 5. Hero slider. Reproduces the template's .hero-wrap / .slider-text /
+ *    .bread / .breadcrumbs treatment as a client-driven slider: the visual
+ *    rules are the template's own, only the advance mechanism replaces the
+ *    owl carousel markup.
+ * ------------------------------------------------------------------------ */
+.nb-slider {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  background-color: #040e26;
+}
+
+@media (min-width: 768px) {
+  .nb-slider {
+    min-height: 560px;
+  }
+}
+
+@media (min-width: 992px) {
+  .nb-slider {
+    min-height: 660px;
+  }
+}
+
+.nb-slider__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  transition:
+    opacity 1.1s ease,
+    transform 7s linear,
+    visibility 0s linear 1.1s;
+}
+
+.nb-slider__slide[data-active='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition:
+    opacity 1.1s ease,
+    transform 7s linear,
+    visibility 0s;
+}
+
+.nb-slider__tint {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(4, 14, 38, 0.5);
+}
+
+.nb-slider__nav {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 3;
+}
+
+.nb-slider__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nb-slider__dot::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.45);
+  transition:
+    background-color 0.3s ease,
+    width 0.3s ease;
+}
+
+.nb-slider__dot[aria-current='true']::after {
+  background-color: #fc5e28;
+  width: 46px;
+}
+
+.nb-slider__dot:focus-visible {
+  outline: 2px solid #fc5e28;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+  .nb-slider__dot::after {
+    width: 20px;
+  }
+  .nb-slider__dot[aria-current='true']::after {
+    width: 30px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * 6. Comparison table scroll shell and the print/PDF quote sheet. The sheet is
+ *    deliberately styled with plain hex colours because html2canvas reads
+ *    computed styles and cannot parse modern colour syntax.
+ * ------------------------------------------------------------------------ */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll .table-nb {
+  min-width: 640px;
+}
+
+.quote-sheet {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 1120px;
+  padding: 40px;
+  background-color: #ffffff;
+  color: #343a40;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.quote-sheet h2 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #040e26;
+  line-height: 1.2;
+}
+
+.quote-sheet .qs-brand {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fc5e28;
+  margin-bottom: 18px;
+}
+
+.quote-sheet .qs-meta {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  background-color: #f8f9fa;
+  border-left: 4px solid #fc5e28;
+  font-size: 13px;
+}
+
+.quote-sheet .qs-meta span {
+  display: inline-block;
+  margin-right: 24px;
+}
+
+.quote-sheet strong {
+  color: #040e26;
+}
+
+.quote-sheet table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quote-sheet th,
+.quote-sheet td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e6e8ec;
+  vertical-align: top;
+}
+
+.quote-sheet th {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #040e26;
+  background-color: #f2f3f5;
+}
+
+.quote-sheet td.qs-num {
+  text-align: right;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.quote-sheet .qs-note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* ---------------------------------------------------------------------------
+ * 7. Loading screen. Geometry, animation names and timing are copied from the
+ *    template's #ftco-loader rules in css/style.css; the extra classes only
+ *    add the skip control and the reduced motion text fallback.
+ * ------------------------------------------------------------------------ */
+#ftco-loader {
+  position: fixed;
+  width: 96px;
+  height: 96px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--nb-shadow-loader);
+  border-radius: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease-out,
+    visibility 0s linear 0.2s;
+  z-index: 1000;
+}
+
+#ftco-loader.fullscreen {
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  background-color: #fff;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#ftco-loader.show {
+  transition:
+    opacity 0.4s ease-out,
+    visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+}
+
+#ftco-loader .circular {
+  animation: loader-rotate 2s linear infinite;
+  position: absolute;
+  left: calc(50% - 24px);
+  top: calc(50% - 24px);
+  display: block;
+  transform: rotate(0deg);
+}
+
+#ftco-loader .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: loader-dash 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes loader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -136px;
+  }
+}
+
+@keyframes nb-pulse-in {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  55% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes nb-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(252, 94, 40, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(252, 94, 40, 0);
+  }
+}
+
+@keyframes nb-speak-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(252, 94, 40, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(252, 94, 40, 0);
+  }
+}
+
+.float-button {
+  position: fixed;
+  z-index: 9998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: var(--nb-shadow-card);
+  animation: nb-pulse-in 0.9s ease-out both;
+}
+
+.float-button--whatsapp {
+  right: 24px;
+  bottom: 24px;
+  background: #25d366;
+}
+
+.float-button--voice {
+  left: 24px;
+  bottom: 24px;
+  background: var(--nb-secondary);
+}
+
+.float-button.is-speaking {
+  animation: nb-speak-ring 1.4s ease-out infinite;
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+  .bottom-safe {
+    bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Template's reveal animation (js/main.js adds .animate on scroll). */
+.ftco-animate {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    visibility 0s;
+}
+
+.ftco-animate.animate {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ftco-animate {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+  #ftco-loader .circular,
+  #ftco-loader .path,
+  .float-button,
+  .float-button.is-speaking {
+    animation: none !important;
+  }
+  #ftco-loader .loader-visual {
+    display: none;
+  }
+}
