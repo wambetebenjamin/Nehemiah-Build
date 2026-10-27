@@ -1,0 +1,22 @@
+# dependencies
+/node_modules
+
+# build output
+/.next
+/out
+
+# deployment / cache
+.vercel
+*.tsbuildinfo
+
+# local env files (real values belong in the Vercel project dashboard)
+.env
+.env*.local
+
+# misc
+.DS_Store
+*.log
+
+# uploaded template archive and its read-only extraction used as the build reference
+wilcon-main.zip
+/.template
